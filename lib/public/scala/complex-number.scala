@@ -44,13 +44,7 @@ class ComplexNumber(var real:Double, var imaginary:Double) {
     val imaginaryByItself:String = if (this.imaginary == 0) "" else
           if (Math.abs(this.imaginary) == 1) "i" else
             if (this.imaginary % 1 == 0) s"${Math.abs(this.imaginary.toInt)}i" else s"${Math.abs(this.imaginary)}i";
-    var returnString = "";
-    if (realByItself != "") returnString += realByItself;
-    if (space != "") returnString += space;
-    if (operand != "") returnString += operand;
-    if (space != "") returnString += space;
-    if (imaginaryByItself != "") returnString += imaginaryByItself;
-    return returnString;
+    return realByItself + space + operand + space + imaginaryByItself;
   }
 }
 
