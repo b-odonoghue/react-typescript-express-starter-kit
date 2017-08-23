@@ -2,15 +2,29 @@
 
 class ComplexNumber(var real:Double, var imaginary:Double) {
   def +(that:ComplexNumber):ComplexNumber = new ComplexNumber(this.real + that.real, this.imaginary + that.imaginary);
-  def -(that:ComplexNumber):ComplexNumber = new ComplexNumber(this.real - that.real, this.imaginary - that.imaginary); // additiveInverse
+  def -(that:ComplexNumber):ComplexNumber = this + that.additiveInverse;
   def *(that:ComplexNumber):ComplexNumber = new ComplexNumber(this.real * that.real - this.imaginary * that.imaginary,
       this.real * that.imaginary + this.imaginary * that.real);
   def /(that:ComplexNumber):ComplexNumber = this * that.multiplicativeInverse;
 
   def +(that:Double):ComplexNumber = new ComplexNumber(this.real + that, this.imaginary);
-  def -(that:Double):ComplexNumber = new ComplexNumber(this.real - that, this.imaginary); // additiveInverse
+  def -(that:Double):ComplexNumber = new ComplexNumber(this.real - that, this.imaginary); // relate to additiveInverse?
   def *(that:Double):ComplexNumber = new ComplexNumber(this.real * that, this.imaginary * that);
-  def /(that:Double):ComplexNumber = new ComplexNumber(this.real / that, this.imaginary / that); // multiplicativeInverse
+  def /(that:Double):ComplexNumber = new ComplexNumber(this.real / that, this.imaginary / that); // relate to multiplicativeInverse?
+
+  // i'm sure there's a better way to do this...
+  override def equals(that:Any):Boolean = {
+    that match {                                 
+      case _:ComplexNumber => this.real == that.asInstanceOf[ComplexNumber].real && this.imaginary == that.asInstanceOf[ComplexNumber].imaginary; // WHY DOESNT THIS COMPILE GRR
+      case _:Byte => this.real == that && this.imaginary == 0;
+      case _:Short => this.real == that && this.imaginary == 0;
+      case _:Int => this.real == that && this.imaginary == 0;
+      case _:Long => this.real == that && this.imaginary == 0;
+      case _:Float => this.real == that && this.imaginary == 0;
+      case _:Double => this.real == that && this.imaginary == 0;
+      case _ => false;
+    }
+  }
 
   def additiveInverse():ComplexNumber = this * (new ComplexNumber(-1,0));
 
@@ -20,19 +34,6 @@ class ComplexNumber(var real:Double, var imaginary:Double) {
   }
 
   def complexConjugate():ComplexNumber = new ComplexNumber(this.real, this.imaginary * -1);
-
-  // override def equals(that:Any):Boolean = {
-  //   that match {                                 
-  //     case _:ComplexNumber => this.real == that.real && this.imaginary == that.imaginary; // WHY DOESNT THIS COMPILE GRR
-  //     case _:Byte => this.real == that && this.imaginary == 0;
-  //     case _:Short => this.real == that && this.imaginary == 0;
-  //     case _:Int => this.real == that && this.imaginary == 0;
-  //     case _:Long => this.real == that && this.imaginary == 0;
-  //     case _:Float => this.real == that && this.imaginary == 0;
-  //     case _:Double => this.real == that && this.imaginary == 0;
-  //     case _ => false;
-  //   }
-  // }
 
   override def toString:String = {
     val realByItself:String = if (this.real == 0 && this.imaginary != 0) "" else
@@ -76,3 +77,10 @@ println(s"${c1 * c1.multiplicativeInverse} == ${ComplexMultiplicativeIdentity}")
 println(s"${c1 * (new ComplexNumber(5,2))} == 29");
 println(s"${c1 - (new ComplexNumber(2,4))} == ${new ComplexNumber(3, -6)}");
 println(s"${c1 / (new ComplexNumber(2,2))} == ${new ComplexNumber(.75, -1.75)}");
+
+println(c1 + c2 == new ComplexNumber(-2,3));
+println(c1 + c1.additiveInverse == ComplexAdditiveIdentity);
+println(c1 * c1.multiplicativeInverse == ComplexMultiplicativeIdentity);
+println(c1 * (new ComplexNumber(5,2)) == 29);
+println(c1 - (new ComplexNumber(2,4)) == new ComplexNumber(3, -6));
+println(c1 / (new ComplexNumber(2,2)) == new ComplexNumber(.75, -1.75));
