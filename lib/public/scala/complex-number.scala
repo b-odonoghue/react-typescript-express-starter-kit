@@ -1,5 +1,3 @@
-//import Numeric._
-
 class ComplexNumber(val real:Double, val imaginary:Double) {
   def +(that:ComplexNumber):ComplexNumber = new ComplexNumber(this.real + that.real, this.imaginary + that.imaginary);
   def -(that:ComplexNumber):ComplexNumber = this + that.additiveInverse;
@@ -13,7 +11,6 @@ class ComplexNumber(val real:Double, val imaginary:Double) {
   def /(that:Double):ComplexNumber = new ComplexNumber(this.real / that, this.imaginary / that);
 
   override def equals(that:Any):Boolean = {
-<<<<<<< HEAD
     case class ComplexNumber(real:Double, imaginary:Double);
     that match {
       case ComplexNumber(real, imaginary) => this.real == real && this.imaginary == imaginary;
@@ -23,16 +20,6 @@ class ComplexNumber(val real:Double, val imaginary:Double) {
       case Long => this.real == that && this.imaginary == 0;
       case Float => this.real == that && this.imaginary == 0;
       case Double => this.real == that && this.imaginary == 0;
-=======
-    that match {
-      case _:ComplexNumber => this.real == that.asInstanceOf[ComplexNumber].real && this.imaginary == that.asInstanceOf[ComplexNumber].imaginary;
-      case _:Byte => this.real == that && this.imaginary == 0;
-      case _:Short => this.real == that && this.imaginary == 0;
-      case _:Int => this.real == that && this.imaginary == 0;
-      case _:Long => this.real == that && this.imaginary == 0;
-      case _:Float => this.real == that && this.imaginary == 0;
-      case _:Double => this.real == that && this.imaginary == 0;
->>>>>>> 1df4174a150fc9bf3b4756293f83d584056e45cd
       case _ => false;
     }
   }
