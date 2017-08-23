@@ -34,7 +34,6 @@ class ComplexNumber(var real:Double, var imaginary:Double) {
   //   }
   // }
 
-  // 
   override def toString:String = {
     val realByItself:String = if (this.real == 0 && this.imaginary != 0) "" else
       if (this.real % 1 == 0) this.real.toInt.toString else this.real.toString;
