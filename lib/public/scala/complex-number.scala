@@ -1,6 +1,6 @@
 //import Numeric._
 
-class ComplexNumber(var real:Double, var imaginary:Double) {
+class ComplexNumber(val real:Double, val imaginary:Double) {
   def +(that:ComplexNumber):ComplexNumber = new ComplexNumber(this.real + that.real, this.imaginary + that.imaginary);
   def -(that:ComplexNumber):ComplexNumber = this + that.additiveInverse;
   def *(that:ComplexNumber):ComplexNumber = new ComplexNumber(this.real * that.real - this.imaginary * that.imaginary,
@@ -8,14 +8,13 @@ class ComplexNumber(var real:Double, var imaginary:Double) {
   def /(that:ComplexNumber):ComplexNumber = this * that.multiplicativeInverse;
 
   def +(that:Double):ComplexNumber = new ComplexNumber(this.real + that, this.imaginary);
-  def -(that:Double):ComplexNumber = new ComplexNumber(this.real - that, this.imaginary); // relate to additiveInverse?
+  def -(that:Double):ComplexNumber = new ComplexNumber(this.real - that, this.imaginary);
   def *(that:Double):ComplexNumber = new ComplexNumber(this.real * that, this.imaginary * that);
-  def /(that:Double):ComplexNumber = new ComplexNumber(this.real / that, this.imaginary / that); // relate to multiplicativeInverse?
+  def /(that:Double):ComplexNumber = new ComplexNumber(this.real / that, this.imaginary / that);
 
-  // i'm sure there's a better way to do this...
   override def equals(that:Any):Boolean = {
-    that match {                                 
-      case _:ComplexNumber => this.real == that.asInstanceOf[ComplexNumber].real && this.imaginary == that.asInstanceOf[ComplexNumber].imaginary; // WHY DOESNT THIS COMPILE GRR
+    that match {
+      case _:ComplexNumber => this.real == that.asInstanceOf[ComplexNumber].real && this.imaginary == that.asInstanceOf[ComplexNumber].imaginary;
       case _:Byte => this.real == that && this.imaginary == 0;
       case _:Short => this.real == that && this.imaginary == 0;
       case _:Int => this.real == that && this.imaginary == 0;
@@ -52,6 +51,7 @@ val ComplexAdditiveIdentity = new ComplexNumber(0,0);
 val ComplexMultiplicativeIdentity = new ComplexNumber(1,0);
 
 
+
 // Some really bad tests
 println(s"${new ComplexNumber(5,-2)} == 5 - 2i");
 println(s"${new ComplexNumber(5,-1)} == 5 - i");
@@ -82,5 +82,6 @@ println(c1 + c2 == new ComplexNumber(-2,3));
 println(c1 + c1.additiveInverse == ComplexAdditiveIdentity);
 println(c1 * c1.multiplicativeInverse == ComplexMultiplicativeIdentity);
 println(c1 * (new ComplexNumber(5,2)) == 29);
+println(s"${c1 * (new ComplexNumber(5,2)) == 28} should be false");
 println(c1 - (new ComplexNumber(2,4)) == new ComplexNumber(3, -6));
 println(c1 / (new ComplexNumber(2,2)) == new ComplexNumber(.75, -1.75));
