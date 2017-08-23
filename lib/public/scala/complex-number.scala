@@ -34,15 +34,23 @@ class ComplexNumber(var real:Double, var imaginary:Double) {
   //   }
   // }
 
-  // need to fix this function. scala prints out null terminating characters as a space to the console
+  // 
   override def toString:String = {
-    val realByItself:String = if (this.real == 0 && this.imaginary != 0) "" else this.real.toString;
-    val space:Char = if (this.imaginary != 0 && this.real != 0) ' ' else 0;
-    val operand:Char = if (this.imaginary == 0 || this.real == 0 && this.imaginary > 0) 0 else
-          if (this.imaginary < 0) '-' else '+';
+    val realByItself:String = if (this.real == 0 && this.imaginary != 0) "" else
+      if (this.real % 1 == 0) this.real.toInt.toString else this.real.toString;
+    val space:String = if (this.imaginary != 0 && this.real != 0) " " else "";
+    val operand:String = if (this.imaginary == 0 || this.real == 0 && this.imaginary > 0) "" else
+          if (this.imaginary < 0) "-" else "+";
     val imaginaryByItself:String = if (this.imaginary == 0) "" else
-          if (Math.abs(this.imaginary) == 1) "i" else s"${Math.abs(this.imaginary)}i";
-    s"${realByItself}${space}${operand}${space}${imaginaryByItself}";
+          if (Math.abs(this.imaginary) == 1) "i" else
+            if (this.imaginary % 1 == 0) s"${Math.abs(this.imaginary.toInt)}i" else s"${Math.abs(this.imaginary)}i";
+    var returnString = "";
+    if (realByItself != "") returnString += realByItself;
+    if (space != "") returnString += space;
+    if (operand != "") returnString += operand;
+    if (space != "") returnString += space;
+    if (imaginaryByItself != "") returnString += imaginaryByItself;
+    return returnString;
   }
 }
 
