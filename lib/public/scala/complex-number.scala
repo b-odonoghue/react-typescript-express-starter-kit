@@ -50,37 +50,37 @@ val ComplexMultiplicativeIdentity = ComplexNumber(1,0);
 
 
 
-// Some really bad tests
-println(s"${new ComplexNumber(5,-2)} == 5 - 2i");
-println(s"${new ComplexNumber(5,-1)} == 5 - i");
-println(s"${new ComplexNumber(0,1)} == i");
-println(s"${new ComplexNumber(0,-1)} == -i");
-println(s"${new ComplexNumber(5,2)} == 5 + 2i");
-println(s"${new ComplexNumber(0,2)} == 2i");
-println(s"${new ComplexNumber(0,0)} == 0");
-println(s"${new ComplexNumber(2,0)} == 2");
-println(s"${new ComplexNumber(0,-7)} == -7i");
+// // Some really bad tests
+// println(s"${new ComplexNumber(5,-2)} == 5 - 2i");
+// println(s"${new ComplexNumber(5,-1)} == 5 - i");
+// println(s"${new ComplexNumber(0,1)} == i");
+// println(s"${new ComplexNumber(0,-1)} == -i");
+// println(s"${new ComplexNumber(5,2)} == 5 + 2i");
+// println(s"${new ComplexNumber(0,2)} == 2i");
+// println(s"${new ComplexNumber(0,0)} == 0");
+// println(s"${new ComplexNumber(2,0)} == 2");
+// println(s"${new ComplexNumber(0,-7)} == -7i");
 
-println(s"${new ComplexNumber(5,2) + 2} == 7 + 2i");
-println(s"${new ComplexNumber(0,2) / 2} == i");
-println(s"${new ComplexNumber(0,0) - 1} == -1");
-println(s"${new ComplexNumber(2,0) * 3} == 6");
+// println(s"${new ComplexNumber(5,2) + 2} == 7 + 2i");
+// println(s"${new ComplexNumber(0,2) / 2} == i");
+// println(s"${new ComplexNumber(0,0) - 1} == -1");
+// println(s"${new ComplexNumber(2,0) * 3} == 6");
 
-val c1 = new ComplexNumber(5,-2);
-val c2 = new ComplexNumber(-7,5);
+// val c1 = new ComplexNumber(5,-2);
+// val c2 = new ComplexNumber(-7,5);
 
-println(s"${c1 + c2} == ${new ComplexNumber(-2,3)}");
-println(s"${c1 + c1.additiveInverse} == ${ComplexAdditiveIdentity}");
-println(s"${c1 * c1.multiplicativeInverse} == ${ComplexMultiplicativeIdentity}");
-println(s"${c1 * (new ComplexNumber(5,2))} == 29");
-println(s"${c1 - (new ComplexNumber(2,4))} == ${new ComplexNumber(3, -6)}");
-println(s"${c1 / (new ComplexNumber(2,2))} == ${new ComplexNumber(.75, -1.75)}");
+// println(s"${c1 + c2} == ${new ComplexNumber(-2,3)}");
+// println(s"${c1 + c1.additiveInverse} == ${ComplexAdditiveIdentity}");
+// println(s"${c1 * c1.multiplicativeInverse} == ${ComplexMultiplicativeIdentity}");
+// println(s"${c1 * (new ComplexNumber(5,2))} == 29");
+// println(s"${c1 - (new ComplexNumber(2,4))} == ${new ComplexNumber(3, -6)}");
+// println(s"${c1 / (new ComplexNumber(2,2))} == ${new ComplexNumber(.75, -1.75)}");
 
-println(c1 + c2 == new ComplexNumber(-2,3));
-println(c1 + c1.additiveInverse == ComplexAdditiveIdentity);
-println(c1 * c1.multiplicativeInverse == ComplexMultiplicativeIdentity);
-println(s"${c1 * (new ComplexNumber(5,2))} == ${29}");
-println(s"${c1 * (new ComplexNumber(5,2)) == 29} should be true");
-println(s"${c1 * (new ComplexNumber(5,2)) == 28} should be false");
-println(c1 - (new ComplexNumber(2,4)) == new ComplexNumber(3, -6));
-println(c1 / (new ComplexNumber(2,2)) == new ComplexNumber(.75, -1.75));
+// println(c1 + c2 == new ComplexNumber(-2,3));
+// println(c1 + c1.additiveInverse == ComplexAdditiveIdentity);
+// println(c1 * c1.multiplicativeInverse == ComplexMultiplicativeIdentity);
+// println(s"${c1 * (new ComplexNumber(5,2))} == ${29}");
+// println(s"${c1 * (new ComplexNumber(5,2)) == 29} should be true");
+// println(s"${c1 * (new ComplexNumber(5,2)) == 28} should be false");
+// println(c1 - (new ComplexNumber(2,4)) == new ComplexNumber(3, -6));
+// println(c1 / (new ComplexNumber(2,2)) == new ComplexNumber(.75, -1.75));
