@@ -1,4 +1,12 @@
+import ComplexNumber._
+
+object ComplexNumber {
+  import scala.language.implicitConversions;
+  implicit def i2cn(i:Double):ComplexNumber = ComplexNumber(i, 0);
+}
+
 case class ComplexNumber(val real:Double, val imaginary:Double) {
+
   def +(that:ComplexNumber):ComplexNumber = ComplexNumber(this.real + that.real, this.imaginary + that.imaginary);
   def -(that:ComplexNumber):ComplexNumber = this + that.additiveInverse;
   def *(that:ComplexNumber):ComplexNumber = ComplexNumber(this.real * that.real - this.imaginary * that.imaginary,
@@ -27,7 +35,7 @@ case class ComplexNumber(val real:Double, val imaginary:Double) {
 
   def multiplicativeInverse():ComplexNumber = {
     val denominator = this.real * this.real + this.imaginary * this.imaginary;
-    new ComplexNumber(this.real / denominator, -this.imaginary / denominator);
+    ComplexNumber(this.real / denominator, -this.imaginary / denominator);
   }
 
   def complexConjugate():ComplexNumber = ComplexNumber(this.real, this.imaginary * -1);
@@ -50,37 +58,38 @@ val ComplexMultiplicativeIdentity = ComplexNumber(1,0);
 
 
 
-// // Some really bad tests
-// println(s"${new ComplexNumber(5,-2)} == 5 - 2i");
-// println(s"${new ComplexNumber(5,-1)} == 5 - i");
-// println(s"${new ComplexNumber(0,1)} == i");
-// println(s"${new ComplexNumber(0,-1)} == -i");
-// println(s"${new ComplexNumber(5,2)} == 5 + 2i");
-// println(s"${new ComplexNumber(0,2)} == 2i");
-// println(s"${new ComplexNumber(0,0)} == 0");
-// println(s"${new ComplexNumber(2,0)} == 2");
-// println(s"${new ComplexNumber(0,-7)} == -7i");
+// Some really bad tests
+println(s"${ComplexNumber(5,-2)} == 5 - 2i");
+println(s"${ComplexNumber(5,-1)} == 5 - i");
+println(s"${ComplexNumber(0,1)} == i");
+println(s"${ComplexNumber(0,-1)} == -i");
+println(s"${ComplexNumber(5,2)} == 5 + 2i");
+println(s"${ComplexNumber(0,2)} == 2i");
+println(s"${ComplexNumber(0,0)} == 0");
+println(s"${ComplexNumber(2,0)} == 2");
+println(s"${ComplexNumber(0,-7)} == -7i");
 
-// println(s"${new ComplexNumber(5,2) + 2} == 7 + 2i");
-// println(s"${new ComplexNumber(0,2) / 2} == i");
-// println(s"${new ComplexNumber(0,0) - 1} == -1");
-// println(s"${new ComplexNumber(2,0) * 3} == 6");
+println(s"${ComplexNumber(5,2) + 2} == 7 + 2i");
+println(s"${ComplexNumber(0,2) / 2} == i");
+println(s"${ComplexNumber(0,0) - 1} == -1");
+println(s"${ComplexNumber(2,0) * 3} == 6");
+println(s"${3 * ComplexNumber(2,0)} == 6");
 
-// val c1 = new ComplexNumber(5,-2);
-// val c2 = new ComplexNumber(-7,5);
+val c1 = ComplexNumber(5,-2);
+val c2 = ComplexNumber(-7,5);
 
-// println(s"${c1 + c2} == ${new ComplexNumber(-2,3)}");
-// println(s"${c1 + c1.additiveInverse} == ${ComplexAdditiveIdentity}");
-// println(s"${c1 * c1.multiplicativeInverse} == ${ComplexMultiplicativeIdentity}");
-// println(s"${c1 * (new ComplexNumber(5,2))} == 29");
-// println(s"${c1 - (new ComplexNumber(2,4))} == ${new ComplexNumber(3, -6)}");
-// println(s"${c1 / (new ComplexNumber(2,2))} == ${new ComplexNumber(.75, -1.75)}");
+println(s"${c1 + c2} == ${ComplexNumber(-2,3)}");
+println(s"${c1 + c1.additiveInverse} == ${ComplexAdditiveIdentity}");
+println(s"${c1 * c1.multiplicativeInverse} == ${ComplexMultiplicativeIdentity}");
+println(s"${c1 * (ComplexNumber(5,2))} == 29");
+println(s"${c1 - (ComplexNumber(2,4))} == ${ComplexNumber(3, -6)}");
+println(s"${c1 / (ComplexNumber(2,2))} == ${ComplexNumber(.75, -1.75)}");
 
-// println(c1 + c2 == new ComplexNumber(-2,3));
-// println(c1 + c1.additiveInverse == ComplexAdditiveIdentity);
-// println(c1 * c1.multiplicativeInverse == ComplexMultiplicativeIdentity);
-// println(s"${c1 * (new ComplexNumber(5,2))} == ${29}");
-// println(s"${c1 * (new ComplexNumber(5,2)) == 29} should be true");
-// println(s"${c1 * (new ComplexNumber(5,2)) == 28} should be false");
-// println(c1 - (new ComplexNumber(2,4)) == new ComplexNumber(3, -6));
-// println(c1 / (new ComplexNumber(2,2)) == new ComplexNumber(.75, -1.75));
+println(c1 + c2 == ComplexNumber(-2,3));
+println(c1 + c1.additiveInverse == ComplexAdditiveIdentity);
+println(c1 * c1.multiplicativeInverse == ComplexMultiplicativeIdentity);
+println(s"${c1 * (ComplexNumber(5,2))} == ${29}");
+println(s"${c1 * (ComplexNumber(5,2)) == 29} should be true");
+println(s"${c1 * (ComplexNumber(5,2)) == 28} should be false");
+println(c1 - (ComplexNumber(2,4)) == ComplexNumber(3, -6));
+println(c1 / (ComplexNumber(2,2)) == ComplexNumber(.75, -1.75));
