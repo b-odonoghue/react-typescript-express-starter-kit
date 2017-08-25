@@ -19,12 +19,7 @@ case class ComplexNumber(val real:Double, val imaginary:Double) {
   override def equals(that:Any):Boolean = {
     that match {
       case c:ComplexNumber => this.real == c.real && this.imaginary == c.imaginary;
-      case _:Byte => this.real == that && this.imaginary == 0;
-      case _:Short => this.real == that && this.imaginary == 0;
-      case _:Int => this.real == that && this.imaginary == 0;
-      case _:Long => this.real == that && this.imaginary == 0;
-      case _:Float => this.real == that && this.imaginary == 0;
-      case _:Double => this.real == that && this.imaginary == 0;
+      case r:java.lang.Number => this.real == that && this.imaginary == 0;
       case _ => false;
     }
   }
