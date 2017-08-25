@@ -1,8 +1,6 @@
-import ComplexNumber._
-
 object ComplexNumber {
   import scala.language.implicitConversions;
-  implicit def i2cn(i:Double):ComplexNumber = ComplexNumber(i, 0);
+  implicit def rn2cn(i:Double):ComplexNumber = ComplexNumber(i, 0);
 }
 
 case class ComplexNumber(val real:Double, val imaginary:Double) {
