@@ -1,4 +1,4 @@
-import { ComplexNumber, ComplexAdditiveIdentity, ComplexMultiplicativeIdentity } from '../public/js/ComplexNumber';
+import { ComplexNumber, ComplexAdditiveIdentity, ComplexMultiplicativeIdentity } from '../public/math/ComplexNumber';
 import {expect} from 'chai';
 import './support';
 

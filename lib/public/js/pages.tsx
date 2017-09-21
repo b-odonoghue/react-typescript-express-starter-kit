@@ -2,6 +2,16 @@ import * as React from "react";
 import { Row, Column } from "./bootstrap";
 import { getCounterValue, updateCounter } from "../../elasticsearch/elasticsearch";
 
+
+//-----Home Page-----//
+// Some static content
+export const HomePage = () => (
+    <div>
+        <h1>Welcome!</h1>
+        <p>Some text.</p>
+    </div>
+)
+
 //-----Page 1-----//
 // Some static content
 interface PersonData {
@@ -53,7 +63,7 @@ export const Page1 = (props:IPageProps) => (
 )
 
 //-----Page 2-----//
-// Button that increases by 1 every time you click it. Elasticsearch database hosted at localhost:9200 on Mike's computer.
+// Button that increases by 1 every time you click it. Elasticsearch database hosted at localhost:9200
 const backgroundStyle = {
     padding: 50,
     backgroundColor: "#00F000",
@@ -142,14 +152,14 @@ export class BouncyBox extends React.Component <{}, {x:number, y:number, vx:numb
         this.state = {x: 50, y: 50, vx: 2, vy: 2};
     }
     
-    moveBall() {
+    moveBox() {
         this.setState({x: this.state.x + this.state.vx, y: this.state.y + this.state.vy});
         if (this.state.x >= boxWidth - bouncyBoxWidth || this.state.x <= 0) this.setState({vx: this.state.vx * -1})
         if (this.state.y >= boxHeight - bouncyBoxHeight || this.state.y <= 0) this.setState({vy: this.state.vy * -1})
     }
 
     componentDidMount() {
-        looptimer = setInterval(this.moveBall.bind(this), 25);
+        looptimer = setInterval(this.moveBox.bind(this), 25);
     }
 
     componentWillUnmount() {
@@ -157,7 +167,7 @@ export class BouncyBox extends React.Component <{}, {x:number, y:number, vx:numb
     }
 
     render() {
-        const ballStyle = {
+        const boxStyle = {
             width: `${bouncyBoxWidth}px`,
             height: `${bouncyBoxHeight}px`,
             backgroundColor: "blue",
@@ -165,14 +175,14 @@ export class BouncyBox extends React.Component <{}, {x:number, y:number, vx:numb
             top: `${this.state.y}px`,
             left: `${this.state.x}px`,
         };
-        return <div style={ballStyle}/>
+        return <div style={boxStyle}/>
     };
 }
 
 export const Page3 = () => <Box/>;
 
 //-----Page 4-----//
-// Bouncing ball using canvas. Stole this from the internet and React-ified it
+// Bouncing ball using canvas. Stole this from the internet and added some changes
 // Source: https://www.burakkanber.com/blog/modeling-physics-javascript-gravity-and-drag/
 var mouse = {x: 0, y: 0, isDown: false};
 var looptimer;
@@ -218,8 +228,8 @@ export class Canvas extends React.Component<{}, {}> {
     }
 
     getMousePosition(e) {
-        mouse.x = e.pageX - 0; //canvas.offsetLeft;
-        mouse.y = e.pageY - 0; //canvas.offsetTop;
+        mouse.x = e.pageX - canvas.offsetLeft;
+        mouse.y = e.pageY - canvas.offsetTop;
     }
 
     mouseDown(e) {
@@ -233,6 +243,16 @@ export class Canvas extends React.Component<{}, {}> {
         mouse.isDown = false;
         ball.velocity.y = (ball.position.y - mouse.y) / 10;
         ball.velocity.x = (ball.position.x - mouse.x) / 10;
+    }
+
+    mouseScroll(e:any) {
+        const growthValue = 3;
+        if (e.deltaY < 0 && ball.radius <= canvasWidth / 2 - growthValue) {
+            ball.radius += growthValue;
+        }
+        else if (e.deltaY > 0 && ball.radius > growthValue) {
+            ball.radius -= growthValue;
+        }
     }
 
     moveBall() {
@@ -293,10 +313,12 @@ export class Canvas extends React.Component<{}, {}> {
             style={canvasStyle}
             onMouseMove={e => this.getMousePosition(e)}
             onMouseDown={this.mouseDown.bind(this)}
-            onMouseUp={this.mouseUp.bind(this)}>
+            onMouseUp={this.mouseUp.bind(this)}
+            onWheel={this.mouseScroll.bind(this)}>
         </canvas>
     }
 }
 
 export const Page4 = () => <Canvas>Browser does not support canvas.</Canvas>
+
 export const Page5 = () => <div/>

@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import {Let} from 'mocha-let-ts';
 import './support';
-import {RealVector} from "../public/js/real-vector";
+import {RealVector} from "../public/math/real-vector";
 
 describe('Vector', () => {
     const composedArray = Let(()=>[] as number[]);

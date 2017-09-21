@@ -23,13 +23,5 @@ http.createServer(expressApp).listen(
             process.exit(1);
         }
         else console.log(`web server is running at ${myUrl}`);
-    });
-
-/*expressApp.get('/counter', (httpRequest, httpResponse) => {
-    httpResponse.end(counter.toString());
-});
-
-expressApp.post('/addToCounter', (httpRequest, httpResponse) => {
-    counter += 1;
-    httpResponse.end(counter.toString());
-});*/
+    }
+);

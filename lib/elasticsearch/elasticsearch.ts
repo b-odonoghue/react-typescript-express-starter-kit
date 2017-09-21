@@ -6,6 +6,7 @@ export const elasticClient = new elasticsearch.Client({
     requestTimeout: 30000
 });
 
+//TODO: should change the function below to take in a JSON file instead
 export async function createIndexAndStuff() {
     elasticClient.exists({
         index: 'counter',

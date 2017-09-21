@@ -1,4 +1,3 @@
-// EVERYTHING HERE IS CURRENTLY CONFIGURED FOR WINDOWS :(
 import { createIndexAndStuff } from "./elasticsearch";
 
 const childProcess = require('child_process');

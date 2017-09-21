@@ -1,12 +1,12 @@
-Resume Website
+Website Template
 ==============
 
-Goal: Have a deployable web server that serves up some static content.
+Goal: Have a deployable web server that serves up some basic content.
 
 # Development Environment Setup
 
 IDE: https://code.visualstudio.com
-Repo: https://github.com/bob-bins/resume
+Repo: https://github.com/bob-bins/react-typescript-express-starter-kit
 
 Windows users may use Cygwin to emulate a linux shell
 NPM / NodeJS needs to be installed
@@ -49,45 +49,3 @@ For development time dependencies (not needed at runtime):
 If you forget the scripts you can run with npm, just use:
 
     npm run
-
-### JSON Hints
-
-primitive data types in JS:
-string
-number
-boolean
-array
-object (key value pairs, where value is also some primitive type)
-
-primitive types not allowed in JSON:
-function
-
-examples:
-
-Numeric value:
-
-    5
-
-Array:
-
-    [
-        "5",
-        7,
-        [
-            "tommy",
-            "is",
-            "fun"
-        ]
-    ]
-
-Object:
-
-    {
-        "propertyA": "valueA",
-        "propertyB": 7,
-        "propertyC": {
-            "name": "Tommy",
-            "age": 29
-        }
-    }
-
